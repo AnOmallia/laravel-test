@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests\EmployeesRequest;
+use App\Employee;
+use App\Company;
 
 class EmployeesController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('admin');
+    }
     /**
      * Display a listing of the resource.
      *
@@ -14,7 +20,8 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        //
+        $employees = Employee::with('companies')->paginate(10);;
+        return view('employees.index', ['employees' => $employees]);
     }
 
     /**
@@ -24,7 +31,8 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        return view('employees.create');
+        $companies = Company::select('name', 'id')->get()->pluck('name', 'id')->toArray();
+        return view('employees.create', ['companies' => $companies]);
     }
 
     /**
@@ -34,10 +42,14 @@ class EmployeesController extends Controller
      * @return \Illuminate\Http\Response
      */
     
-    // public function store(Request $request)
     public function store(EmployeesRequest $request)
     {
         $input = $request->all();
+        unset($input['_token']);
+        $employee = Employee::create($input);
+        if($employee){
+            return redirect('employee/' . $employee->id);
+        }
     }
 
     /**
@@ -48,7 +60,8 @@ class EmployeesController extends Controller
      */
     public function show($id)
     {
-        //
+        $employee = Employee::with('companies')->whereId($id)->first();
+        return view('employees.show', ['employee' => $employee]);
     }
 
     /**
@@ -59,7 +72,9 @@ class EmployeesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $employee = Employee::with('companies')->whereId($id)->first();
+        $companies = Company::select('name', 'id')->get()->pluck('name', 'id')->toArray();
+        return view('employees.edit', ['employee' => $employee, 'companies' => $companies]);
     }
 
     /**
@@ -69,9 +84,15 @@ class EmployeesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(EmployeesRequest $request, $id)
     {
-        //
+        $input = $request->all();
+        unset($input['_method']);
+        unset($input['_token']);
+        $employee = Employee::whereId($id)->update($input);
+        if($employee){
+            return redirect('employee/' . $id);
+        }
     }
 
     /**
@@ -82,6 +103,9 @@ class EmployeesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $employee = Employee::find($id)->delete();
+        if($employee){
+            return redirect('employee');
+        }
     }
 }

@@ -9,27 +9,23 @@
                 <div class="card-header">Add Companie</div>
 
                 <div class="card-body">
-	                {!! Form::open(['url' => '/employee', 'method' => 'post']) !!}
+	                {!! Form::open(['url' => '/company', 'method' => 'post', 'files' => true]) !!}
 	                	{{ csrf_field() }}
 	                	<div class="form-group">
-							<label for="firstName">First name:</label>
-							{!! Form::text('first_name', null, ['class' => 'form-control', 'id' => 'firstName']) !!}
-						</div>
-						<div class="form-group">
-							<label for="lastName">Last name:</label>
-							{!! Form::text('last_name', null, ['class' => 'form-control', 'id' => 'lastName']) !!}
+							<label for="firstName">Company name:</label>
+							{!! Form::text('name', null, ['class' => 'form-control', 'id' => 'firstName']) !!}
 						</div>
 						<div class="form-group">
 							<label for="email">Email address:</label>
 							{!! Form::email('email', null, ['class' => 'form-control', 'id' => 'email']) !!}
 						</div>
 						<div class="form-group">
-							<label for="phone">Phone:</label>
-							{!! Form::tel('phone', null, ['class' => 'form-control', 'id' => 'phone']) !!}
+							<label for="company">Website:</label>
+							{!! Form::text('website',  null, ['class' => 'form-control', 'id' => 'website']) !!}
 						</div>
 						<div class="form-group">
-							<label for="company">Company name:</label>
-							{!! Form::select('company', $companies, null, ['class' => 'form-control', 'id' => 'company']) !!}
+							<label for="logo">Company logo:</label>
+							{!! Form::file('logo', null, ['class' => 'form-control', 'id' => 'logo']) !!}
 						</div>
 						<button type="submit" class="btn btn-default">Save</button>
 					{!! Form::close() !!}
