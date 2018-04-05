@@ -55,13 +55,13 @@ class CompaniesController extends Controller
 
             $imageName = time().'.'.$request->logo->getClientOriginalExtension();
             $success = $request->logo->move($path, $imageName);
-            if($success){
+            if ($success) {
                 $input['logo'] = $imageName;
                 $company = Company::create($input);
                 return redirect('company/' . $company->id);
             }
             return redirect()->back();
-        } else{
+        } else {
             $company = Company::create($input);
             return redirect('company/' . $company->id);
         }
@@ -110,24 +110,24 @@ class CompaniesController extends Controller
         unset($input['_method']);
         unset($input['_token']);
         $company = Company::whereId($id)->first();
-        if($request->logo){
+        if ($request->logo) {
             $path = '../storage/app/public/logos';
             if (!file_exists($path)) {
                 File::makeDirectory($path);
             }
 
-            if($company->logo){
+            if($company->logo) {
                 File::delete($path."/".$company->logo);
             }
             $imageName = time().'.'.$request->logo->getClientOriginalExtension();
             $success = $request->logo->move($path, $imageName);
-            if($success){
+            if ($success) {
                 $input['logo'] = $imageName;
                 $company = Company::find($id)->update($input);
                 return redirect('company/' . $id);
             }
             return redirect()->back();
-        } else{
+        } else {
             $company = Company::find($id)->update($input);
             return redirect('company/' . $id);
         }
@@ -142,7 +142,7 @@ class CompaniesController extends Controller
     public function destroy($id)
     {
         $company = Company::find($id);
-        if($company->logo){
+        if ($company->logo) {
             $path = '../storage/app/public/logos';
             File::delete($path."/".$company->logo);
         }

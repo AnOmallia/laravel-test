@@ -20,7 +20,7 @@ class EmployeesController extends Controller
      */
     public function index()
     {
-        $employees = Employee::with('companies')->paginate(10);;
+        $employees = Employee::with('companies')->paginate(10);
         return view('employees.index', ['employees' => $employees]);
     }
 
@@ -31,7 +31,8 @@ class EmployeesController extends Controller
      */
     public function create()
     {
-        $companies = Company::select('name', 'id')->get()->pluck('name', 'id')->toArray();
+        $companies = Company::select('name', 'id')->get()->pluck('name', 'id')
+            ->toArray();
         return view('employees.create', ['companies' => $companies]);
     }
 
@@ -73,8 +74,11 @@ class EmployeesController extends Controller
     public function edit($id)
     {
         $employee = Employee::with('companies')->whereId($id)->first();
-        $companies = Company::select('name', 'id')->get()->pluck('name', 'id')->toArray();
-        return view('employees.edit', ['employee' => $employee, 'companies' => $companies]);
+        $companies = Company::select('name', 'id')->get()
+            ->pluck('name', 'id')->toArray();
+        return view('employees.edit', [
+            'employee' => $employee, 'companies' => $companies
+            ]);
     }
 
     /**
@@ -90,7 +94,7 @@ class EmployeesController extends Controller
         unset($input['_method']);
         unset($input['_token']);
         $employee = Employee::whereId($id)->update($input);
-        if($employee){
+        if ($employee) {
             return redirect('employee/' . $id);
         }
     }
@@ -104,7 +108,7 @@ class EmployeesController extends Controller
     public function destroy($id)
     {
         $employee = Employee::find($id)->delete();
-        if($employee){
+        if ($employee) {
             return redirect('employee');
         }
     }
