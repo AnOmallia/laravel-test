@@ -25,7 +25,9 @@
 					<div class="form-group">
 						<label for="logo">Company logo:</label>
 						{!! Form::text('logo', $company->logo, ['class' => 'form-control', 'id' => 'logo']) !!}
-						<img src="{{ storage_path('app/public/logos/'.$company->logo)  }}" alt="logo" width="100px" height="100px">
+					@if($company->logo)
+						<img src="{{ asset('storage/logos/'.$company->logo)  }}" alt="logo" width="100px" height="100px">
+					@endif
 					</div>
 					<a class="btn btn-primary" href="/company/{{$company->id}}/edit">Edit</a>
 					{!! Form::open(['url' => '/company/'.$company->id, 'method' => 'delete']) !!}

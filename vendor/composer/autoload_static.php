@@ -320,7 +320,9 @@ class ComposerStaticInit41d65562886843b47ac2c2ea21814796
     );
 
     public static $classMap = array (
+        'App\\Company' => __DIR__ . '/../..' . '/app/Company.php',
         'App\\Console\\Kernel' => __DIR__ . '/../..' . '/app/Console/Kernel.php',
+        'App\\Employee' => __DIR__ . '/../..' . '/app/Employee.php',
         'App\\Exceptions\\Handler' => __DIR__ . '/../..' . '/app/Exceptions/Handler.php',
         'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
         'App\\Http\\Controllers\\Auth\\LoginController' => __DIR__ . '/../..' . '/app/Http/Controllers/Auth/LoginController.php',
@@ -331,6 +333,7 @@ class ComposerStaticInit41d65562886843b47ac2c2ea21814796
         'App\\Http\\Controllers\\EmployeesController' => __DIR__ . '/../..' . '/app/Http/Controllers/EmployeesController.php',
         'App\\Http\\Controllers\\HomeController' => __DIR__ . '/../..' . '/app/Http/Controllers/HomeController.php',
         'App\\Http\\Kernel' => __DIR__ . '/../..' . '/app/Http/Kernel.php',
+        'App\\Http\\Middleware\\Admin' => __DIR__ . '/../..' . '/app/Http/Middleware/Admin.php',
         'App\\Http\\Middleware\\EncryptCookies' => __DIR__ . '/../..' . '/app/Http/Middleware/EncryptCookies.php',
         'App\\Http\\Middleware\\RedirectIfAuthenticated' => __DIR__ . '/../..' . '/app/Http/Middleware/RedirectIfAuthenticated.php',
         'App\\Http\\Middleware\\TrimStrings' => __DIR__ . '/../..' . '/app/Http/Middleware/TrimStrings.php',

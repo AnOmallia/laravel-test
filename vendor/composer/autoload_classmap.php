@@ -6,7 +6,9 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'App\\Company' => $baseDir . '/app/Company.php',
     'App\\Console\\Kernel' => $baseDir . '/app/Console/Kernel.php',
+    'App\\Employee' => $baseDir . '/app/Employee.php',
     'App\\Exceptions\\Handler' => $baseDir . '/app/Exceptions/Handler.php',
     'App\\Http\\Controllers\\Auth\\ForgotPasswordController' => $baseDir . '/app/Http/Controllers/Auth/ForgotPasswordController.php',
     'App\\Http\\Controllers\\Auth\\LoginController' => $baseDir . '/app/Http/Controllers/Auth/LoginController.php',
@@ -17,6 +19,7 @@ return array(
     'App\\Http\\Controllers\\EmployeesController' => $baseDir . '/app/Http/Controllers/EmployeesController.php',
     'App\\Http\\Controllers\\HomeController' => $baseDir . '/app/Http/Controllers/HomeController.php',
     'App\\Http\\Kernel' => $baseDir . '/app/Http/Kernel.php',
+    'App\\Http\\Middleware\\Admin' => $baseDir . '/app/Http/Middleware/Admin.php',
     'App\\Http\\Middleware\\EncryptCookies' => $baseDir . '/app/Http/Middleware/EncryptCookies.php',
     'App\\Http\\Middleware\\RedirectIfAuthenticated' => $baseDir . '/app/Http/Middleware/RedirectIfAuthenticated.php',
     'App\\Http\\Middleware\\TrimStrings' => $baseDir . '/app/Http/Middleware/TrimStrings.php',
